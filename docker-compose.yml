@@ -1,0 +1,56 @@
+version: "3"
+services:
+  app:
+    image: "cosmtrek/air:v1.43.0"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    ports:
+      - "80:80"
+      - "10415:10415"
+    environment:
+      - GOPROXY=https://goproxy.io,direct
+    depends_on:
+      - mysql
+    networks:
+      - chat_back
+  mysql:
+    image: "mysql:8.0"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=main
+    networks:
+      - chat_back
+#  myadmin:
+#    image: "phpmyadmin"
+#    depends_on:
+#      - mysql
+#    ports:
+#      - 8081:80
+#    restart: always
+#    environment:
+#      - PMA_ARBITRARY=1
+#      - PMA_HOST=mysql
+#      - PMA_USER=root
+#      - PMA_PASSWORD=toor
+#      - UPLOAD_LIMIT=100000000
+#    networks:
+#      - chat_back
+#  redis:
+#    image: "redis:3-alpine"
+#    ports:
+#      - "6379:6379"
+#    networks:
+#      - chat_back
+networks:
+  chat_back:
+  #  kafka:
+  #    image: bitnami/kafka:3
+  #    ports:
+  #      - "9092:9092"
+  #    volumes:
+  #      - ./data/kafka:/bitnami/kafka

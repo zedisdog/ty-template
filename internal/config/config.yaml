@@ -1,0 +1,23 @@
+log:
+  driver: zap
+default:
+  httpServer:
+    host: 0.0.0.0
+    port: 80
+    enablePprof: true
+  storage:
+    path: ./storage
+    driver: local
+    access:
+      domain: localhost
+      scheme: http
+  database:
+    migrate: true
+    dsn: mysql://root:toor@tcp(mysql)/main?collation=utf8mb4_unicode_ci&loc=Asia/Shanghai&parseTime=true
+modules:
+  document:
+  account:
+    wechat:
+      mini:
+        appid:
+        secret:

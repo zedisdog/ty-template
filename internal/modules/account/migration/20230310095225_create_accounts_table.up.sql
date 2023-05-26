@@ -1,0 +1,7 @@
+CREATE TABLE accounts (
+    id BIGINT(20) UNSIGNED PRIMARY KEY,
+    username VARCHAR(255) NOT NULL DEFAULT '' COMMENT '用户名',
+    password VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码',
+    created_at BIGINT(20) NOT NULL DEFAULT 0 COMMENT '创建时间',
+    updated_at BIGINT(20) NOT NULL DEFAULT 0 COMMENT '更新时间'
+)ENGINE=InnoDB CHARSET=utf8mb4 COMMENT='账号表' COLLATE=utf8mb4_unicode_ci;
